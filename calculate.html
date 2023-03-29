@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+            width: 300px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label>Фаренгейты в Цельсии</label>
+        <input type="number" id="fahrenheitInput" placeholder="Введите значение в Фаренгейтах">
+        <input type="number" id="celsiusResult" placeholder="Результат в Цельсиях" disabled>
+
+        <label>MPG в литры на 100 км</label>
+        <input type="number" id="mpgInput" placeholder="Введите значение в милях на галлон">
+        <input type="number" id="litersResult" placeholder="Результат в литрах на 100 км" disabled>
+
+        <button type="button">Рассчитать</button>
+    </form>
+
+    <script>
+        const btn = document.querySelector('button')
+        btn.addEventListener('click', convert)
+
+        function convert() {
+
+            const fahrenheit = document.getElementById('fahrenheitInput').value;
+            const mpg = document.getElementById('mpgInput').value;
+
+            const convertMPGtoLitersPer100km = (mpg) => {
+                const litersPer100km = 235.215 / mpg;
+                return litersPer100km.toFixed(2);
+            }
+
+
+            const celsius = (fahrenheit - 32) * 5 / 9;
+            const liters = convertMPGtoLitersPer100km(mpg)
+
+            document.getElementById('celsiusResult').value = celsius.toFixed(2);
+            document.getElementById('litersResult').value = liters
+        }
+    </script>
+</body>
+
+</html>
