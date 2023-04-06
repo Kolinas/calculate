@@ -9,6 +9,7 @@
 
 .calc {
     background: url('./logo.jpg') no-repeat center/contain;
+    overflow: hidden;
 }
 
 .input-group {
