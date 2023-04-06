@@ -24,7 +24,7 @@
 
 .inputs input {
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
@@ -80,5 +80,13 @@ form h4 {
     .inputs {
         flex-direction: column;
         align-items: center;
+    }
+
+    .result{
+        width: 250px;
+    }
+    .result input{
+        width: 100px;
+        padding: 5px;
     }
 }
