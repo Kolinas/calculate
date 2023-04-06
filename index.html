@@ -1,97 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            height: 100vh;
-            justify-content: space-evenly;
-        }
-
-        input {
-            width: 300px;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        p {
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        label {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <form>
-        <label>Фаренгейты в Цельсии</label>
-        <input type="number" id="fahrenheitInput" placeholder="Введите значение в Фаренгейтах">
-        <input type="number" id="celsiusResult" placeholder="Результат в Цельсиях" disabled>
-
-        <label>MPG в литры на 100 км</label>
-        <input type="number" id="mpgInput" placeholder="Введите значение в милях на галлон">
-        <input type="number" id="litersResult" placeholder="Результат в литрах на 100 км" disabled>
-
-        <button type="button">Рассчитать</button>
-    </form>
+    <div class="calc">
+        <form class="form">
+            <div class="inputs">
+                <div>
+                    <h4>Фаренгейты в Цельсии</h4>
+                    <input type="number" id="fahrenheitInput" placeholder="Значение в Фаренгейтах">
+                </div>
+                <div>
+                    <h4>MPG в литры на 100 км</h4>
+                    <input type="number" id="mpgInput" placeholder="Значение в милях/галлон">
+                </div>
+            </div>
+            <div class="result">
+                <input type="text" id="celsiusResult" placeholder="в Цельсиях" disabled>
+                <input type="text" id="litersResult" placeholder="в литрах на 100 км" disabled>
+            </div>
+        </form>
+    </div>
 
     <script>
-        const btn = document.querySelector('button')
-        btn.addEventListener('click', convert)
+        const farinheit = document.querySelector('#fahrenheitInput')
+        const mpgInput = document.querySelector('#mpgInput')
 
-        function convert() {
-
-            const fahrenheit = document.getElementById('fahrenheitInput').value;
-            const mpg = document.getElementById('mpgInput').value;
-
-            const convertMPGtoLitersPer100km = (mpg) => {
-                const litersPer100km = 235.215 / mpg;
-                return litersPer100km.toFixed(2);
-            }
+        farinheit.addEventListener('input', convertToCel)
+        mpgInput.addEventListener('input', convertToMpg)
 
 
-            const celsius = (fahrenheit - 32) * 5 / 9;
-            const liters = convertMPGtoLitersPer100km(mpg)
+        const convertMPGtoLitersPer100km = (mpg) => {
+            const litersPer100km = 235.215 / mpg;
+            return litersPer100km.toFixed(2);
+        }
 
-            document.getElementById('celsiusResult').value = celsius.toFixed(2);
-            document.getElementById('litersResult').value = liters
+        function convertToCel({ target }) {
+            const celsius = (+target.value - 32) * 5 / 9;
+            document.getElementById('celsiusResult').value = target.value ? `${celsius.toFixed(2)}°C` : '';
+        }
+        function convertToMpg({ target }) {
+            const liters = convertMPGtoLitersPer100km(+target.value)
+            document.getElementById('litersResult').value = target.value ? `${liters} L/KM` : ''
         }
     </script>
 </body>

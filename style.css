@@ -1,0 +1,84 @@
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 500px;
+}
+
+.calc {
+    background: url('./logo.jpg') no-repeat center/contain;
+}
+
+.input-group {
+    display: block;
+    justify-content: space-between;
+}
+
+.inputs {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+}
+
+.inputs input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.result{
+    display: flex;
+    margin-top: auto;
+    width: 350px;
+    justify-content: space-between;
+}
+
+.result input{
+    width: 150px;
+    padding: 5px;
+    font-size: 18px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+form h4 {
+    margin: 0;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+@media screen and (max-width: 540px) {
+
+    form h4 {
+        margin-bottom: 5px;
+    }
+
+    .calc {
+        background: url('./logo.jpg') no-repeat center/100% 100%;
+    }
+
+    .inputs {
+        flex-direction: column;
+        align-items: center;
+    }
+}
